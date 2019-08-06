@@ -6,7 +6,7 @@
 
 2.签名认证 :目前关于apikey申请和修改，请在“个人中心 - API管理”页面进行相关操作。其中AccessKey为API 访问		        密钥，SecretKey为用户对请求进行签名的密钥（仅申请时可见）。 
 
-3.签名方法 :每个API接口的所有请求参数均参与签名，此外，参与签名的参数还有随机字符串（nonceStr）、时间戳（timestamp）、API访问秘钥（accessKey）;将所有参数按照参数名ASCII码顺序进行排序，通过`APISercret`使用`HmacSHA256`协议进行加密，得到签名参数`sign`
+3.签名方法 :每个API接口的所有请求参数均参与签名，参数值为空，不需要参与签名。此外，参与签名的参数还有随机字符串（nonceStr）、时间戳（timestamp）、API访问秘钥（accessKey）;将所有参数按照参数名ASCII码顺序进行排序，通过`APISercret`使用`HmacSHA256`协议进行加密，得到签名参数`sign`
 
 ```java
 	// Java版本签名方法
@@ -143,38 +143,40 @@
  **返回示例**
 ``` 
 {
-    "code": "0",
-    "msg": "ok",
-    "data": [
-        "BBCUSDT",
-        "BBQUSDT",
-        "BOTETH",
-        "BOTUSDT",
-        "BTCUSDT",
-        "EOSETH",
-        "EOSUSDT",
-        "ETCUSDT",
-        "ETHBTC",
-        "ETHUSDT",
-        "HSRETH",
-        "HSRUSDT",
-        "LTCBTC",
-        "LTCUSDT",
-        "NEDUSDT",
-        "QTUMETH",
-        "QTUMUSDT",
-        "QUTMBTC",
-        "VSETUSDT"
-    ]
+  "code": 0,
+  "msg": "成功",
+  "data": [
+    {
+      "pairId": 1,
+      "symbol": "BTCUSDT",
+      "sizePrecision": 8,
+      "pricePrecision": 2
+    },
+    {
+      "pairId": 2,
+      "symbol": "ETHUSDT",
+      "sizePrecision": 7,
+      "pricePrecision": 3
+    },
+    {
+      "pairId": 3,
+      "symbol": "ETCUSDT",
+      "sizePrecision": 6,
+      "pricePrecision": 4
+    }
+  ]
 }
 ```
  **返回参数说明** 
 
-| 参数名 | 类型   | 说明                                              |
-| :----- | :----- | ------------------------------------------------- |
-| code   | string | 状态码<br> 0 成功 <br> -1 失败                    |
-| msg    | string | 错误信息                                          |
-| data   | array  | BBCUSDT,BBQUSDT,BOTETH...均为系统支持的交易对名称 |
+| 参数名         | 类型   | 说明                                              |
+| :------------- | :----- | ------------------------------------------------- |
+| code           | string | 状态码<br> 0 成功 <br> -1 失败                    |
+| msg            | string | 错误信息                                          |
+| pairId         | int    | 交易对ID                                          |
+| symbol         | string | BBCUSDT,BBQUSDT,BOTETH...均为系统支持的交易对名称 |
+| sizePrecision  | int    | 数量小数位精度                                    |
+| pricePrecision | int    | 价格小数位精度                                    |
 
  **备注** 
 
