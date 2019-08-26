@@ -2,7 +2,7 @@
 
 ### 请求说明：
 
-1.访问地址：https://api.vvbtc.com/
+1.访问地址：https://api2.vvbtc.com/
 
 2.签名认证 :目前关于apikey申请和修改，请在“个人中心 - API管理”页面进行相关操作。其中AccessKey为API 访问		        密钥，SecretKey为用户对请求进行签名的密钥（仅申请时可见）。 
 
